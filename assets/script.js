@@ -8,7 +8,7 @@ function getSavedData() {
   var storedCities = JSON.parse(localStorage.getItem('storedCitiesArray'))
   if (storedCities !== null)
   historyList = storedCities;
-  renderSavedData()
+  renderSavedData();
 }
 getSavedData();
 
@@ -16,7 +16,7 @@ function renderSavedData() {
   for (var i = 0; i < historyList.length; i++)
   $('<button>').text(historyList[i]).attr('id', historyList[i]).appendTo(searchHistoryEl)
 }
-renderSavedData();
+// renderSavedData();
 
 function captureInput() {
     var citySearch = $('#citySearch').val();
