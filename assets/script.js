@@ -8,10 +8,8 @@ clearHistoryEl.on('click', clearHistory)
 function renderSavedData() {
   searchHistoryEl.text('')
   for (var i = 0; i < historyList.length; i++)
-  $('<input class="form-control searchButtons m-2" type="text" readonly="true" onclick="bringBackData(' + historyList[i] + ')">').text(historyList[i]).attr('value', historyList[i]).appendTo(searchHistoryEl)
+  $('<button class="form-control searchButtons m-2" type="button">').text(historyList[i]).attr("onclick", "bringBackData('" + historyList[i] + "')").appendTo(searchHistoryEl)
 };
-
-renderSavedData();
 
 function captureInput() {
   var citySearch = $('#citySearch').val();
@@ -29,7 +27,6 @@ function getWeather(city) {
     return response.json();
   })
   .then(function (data) {
-    console.log(data)
     var lat = data[0].lat
     var lon = data[0].lon
     //uses coord to get current weather
@@ -95,13 +92,14 @@ function getWeather(city) {
   });
 };
 
-function bringBackData(oldCity) {
-  var x = oldCity
-  console.log(x)
-}
+renderSavedData();
 
 function clearHistory() {
   localStorage.clear();
   historyList = [];
   renderSavedData();
+}
+
+function bringBackData(fromHistory) {
+  getWeather(fromHistory);
 }
