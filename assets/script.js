@@ -21,7 +21,7 @@ function captureInput() {
 
 function getWeather(city) {
   // geocodes city to lat lon
-  var geocodeAPI = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=&appid=79bbf307779d2f0208bec97652345b71"
+  var geocodeAPI = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=&appid=79bbf307779d2f0208bec97652345b71"
   fetch(geocodeAPI)
   .then(function (response) {
     return response.json();
