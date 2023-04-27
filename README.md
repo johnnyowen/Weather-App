@@ -17,3 +17,5 @@ N/A
 Refer to license in repo.
 
 https://johnnyowen.github.io/Weather-App/
+
+![image](https://user-images.githubusercontent.com/127053240/234998267-11b3d431-f99c-4d0c-9342-500afbe9b46e.png)
