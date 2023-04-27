@@ -29,6 +29,7 @@ function getWeather(city) {
     return response.json();
   })
   .then(function (data) {
+    console.log(data)
     var lat = data[0].lat
     var lon = data[0].lon
     //uses coord to get current weather

@@ -1,6 +1,5 @@
 [class*="col"] {
     padding: 1rem;
-    border: 2px solid #000;
 }
 
 .navbar {
@@ -21,9 +20,13 @@ body {
 .TCBG {
     background-color: #fff;
 }
+
 span {
     padding-left: 3px;
 }
-/* img, span {
-    border: 2px solid #000;
-} */
+
+#fiveday {
+    /* border: 2px solid #000; */
+    font-size: 25px;
+    margin-top: 4px;
+}
