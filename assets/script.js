@@ -5,12 +5,14 @@ var historyList = JSON.parse(localStorage.getItem("storedCitiesArray")) || [];
 searchButton.on('click', captureInput);
 clearHistoryEl.on('click', clearHistory)
 
+// renders local storage as searchable history buttons
 function renderSavedData() {
   searchHistoryEl.text('')
   for (var i = 0; i < historyList.length; i++)
-  $('<button class="form-control searchButtons m-2" type="button">').text(historyList[i]).attr("onclick", "bringBackData('" + historyList[i] + "')").appendTo(searchHistoryEl)
+  $('<button class="btn btn-success searchButtons m-2" type="button">').text(historyList[i]).attr("onclick", "bringBackData('" + historyList[i] + "')").appendTo(searchHistoryEl)
 };
 
+// captures city, fires API function, saves it locally 
 function captureInput() {
   var citySearch = $('#citySearch').val();
   getWeather(citySearch);
@@ -19,6 +21,7 @@ function captureInput() {
   renderSavedData();
 };
 
+// uses 3 APIs to get coordinates from city, current weather and future weather
 function getWeather(city) {
   // geocodes city to lat lon
   var geocodeAPI = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=&appid=79bbf307779d2f0208bec97652345b71"
@@ -62,7 +65,6 @@ function getWeather(city) {
         $('#day1temp').text(data.list[4].main.temp + '\u00B0F');
         $('#day1wind').text(data.list[4].wind.speed + 'mph');
         $('#day1humid').text(data.list[4].main.humidity + '% Humidity');
-        
         $('#day2city').text(data.city.name)
         var date2 = new Date(data.list[12].dt_txt)
         $('#day2date').text(date2.toUTCString());
@@ -71,45 +73,45 @@ function getWeather(city) {
         $('#day2temp').text(data.list[12].main.temp + '\u00B0F');
         $('#day2wind').text(data.list[12].wind.speed + 'mph');
         $('#day2humid').text(data.list[12].main.humidity + '% Humidity');
-        
         $('#day3city').text(data.city.name)
         var date3 = new Date(data.list[20].dt_txt)
         $('#day3date').text(date3.toUTCString());
         $('#day3icon').attr('src', 'http://openweathermap.org/img/w/' + data.list[20].weather[0].icon + '.png').attr('alt', data.list[24].weather[0].description);
         $('#day3Desc').text(data.list[20].weather[0].description);
         $('#day3temp').text(data.list[20].main.temp + '\u00B0F');
-      $('#day3wind').text(data.list[20].wind.speed + 'mph');
-      $('#day3humid').text(data.list[20].main.humidity + '% Humidity');
-      
-      $('#day4city').text(data.city.name)
-      var date4 = new Date(data.list[28].dt_txt)
-      $('#day4date').text(date4.toUTCString());
-      $('#day4icon').attr('src', 'http://openweathermap.org/img/w/' + data.list[28].weather[0].icon + '.png').attr('alt', data.list[32].weather[0].description);
-      $('#day4Desc').text(data.list[28].weather[0].description);
-      $('#day4temp').text(data.list[28].main.temp + '\u00B0F');
-      $('#day4wind').text(data.list[28].wind.speed + 'mph');
-      $('#day4humid').text(data.list[28].main.humidity + '% Humidity');
-      
-      $('#day5city').text(data.city.name)
-      var date5 = new Date(data.list[36].dt_txt)
-      $('#day5date').text(date5.toUTCString());
-      $('#day5icon').attr('src', 'http://openweathermap.org/img/w/' + data.list[36].weather[0].icon + '.png').attr('alt', data.list[39].weather[0].description);
-      $('#day5Desc').text(data.list[36].weather[0].description);
-      $('#day5temp').text(data.list[36].main.temp + '\u00B0F');
-      $('#day5wind').text(data.list[36].wind.speed + 'mph');
-      $('#day5humid').text(data.list[36].main.humidity + '% Humidity');
+        $('#day3wind').text(data.list[20].wind.speed + 'mph');
+        $('#day3humid').text(data.list[20].main.humidity + '% Humidity');
+        $('#day4city').text(data.city.name)
+        var date4 = new Date(data.list[28].dt_txt)
+        $('#day4date').text(date4.toUTCString());
+        $('#day4icon').attr('src', 'http://openweathermap.org/img/w/' + data.list[28].weather[0].icon + '.png').attr('alt', data.list[32].weather[0].description);
+        $('#day4Desc').text(data.list[28].weather[0].description);
+        $('#day4temp').text(data.list[28].main.temp + '\u00B0F');
+        $('#day4wind').text(data.list[28].wind.speed + 'mph');
+        $('#day4humid').text(data.list[28].main.humidity + '% Humidity');
+        $('#day5city').text(data.city.name)
+        var date5 = new Date(data.list[36].dt_txt)
+        $('#day5date').text(date5.toUTCString());
+        $('#day5icon').attr('src', 'http://openweathermap.org/img/w/' + data.list[36].weather[0].icon + '.png').attr('alt', data.list[39].weather[0].description);
+        $('#day5Desc').text(data.list[36].weather[0].description);
+        $('#day5temp').text(data.list[36].main.temp + '\u00B0F');
+        $('#day5wind').text(data.list[36].wind.speed + 'mph');
+        $('#day5humid').text(data.list[36].main.humidity + '% Humidity');
     });
   });
 };
 
-renderSavedData();
-
+// clears search history
 function clearHistory() {
   localStorage.clear();
   historyList = [];
   renderSavedData();
 }
 
+// fires API function again with search history city
 function bringBackData(fromHistory) {
   getWeather(fromHistory);
 }
+
+// fires function to load local storage upon page load
+renderSavedData();
