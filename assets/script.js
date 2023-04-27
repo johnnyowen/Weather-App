@@ -37,9 +37,9 @@ function getWeather(city) {
     })
     //places data in top card
     .then(function (data) {
+      $('#topCity').text(data.name);
         var date = new Date(data.dt * 1000);
-        $('#topCity').text(data.name);
-        $('#topDate').text(date);
+        $('#topDate').text(date.toUTCString());
         $('#topIcon').attr('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png').attr('alt', data.weather[0].description);
         $('#topDesc').text(data.weather[0].description);
         $('#topTemp').text('-->Temp:' + data.main.temp + '\u00B0F');
@@ -54,35 +54,45 @@ function getWeather(city) {
       })
       //places data in 5 day forcast cards
       .then(function (data) {
-        $('#day1date').text(new Date(data.list[4].dt_txt));
+        $('#day1city').text(data.city.name)
+        var date1 = new Date(data.list[4].dt_txt)
+        $('#day1date').text(date1.toUTCString());
         $('#day1icon').attr('src', 'http://openweathermap.org/img/w/' + data.list[4].weather[0].icon + '.png').attr('alt', data.list[8].weather[0].description);
         $('#day1Desc').text(data.list[4].weather[0].description);
         $('#day1temp').text(data.list[4].main.temp + '\u00B0F');
         $('#day1wind').text(data.list[4].wind.speed + 'mph');
         $('#day1humid').text(data.list[4].main.humidity + '% Humidity');
         
-        $('#day2date').text(new Date(data.list[12].dt_txt));
+        $('#day2city').text(data.city.name)
+        var date2 = new Date(data.list[12].dt_txt)
+        $('#day2date').text(date2.toUTCString());
         $('#day2icon').attr('src', 'http://openweathermap.org/img/w/' + data.list[12].weather[0].icon + '.png').attr('alt', data.list[16].weather[0].description);
         $('#day2Desc').text(data.list[12].weather[0].description);
         $('#day2temp').text(data.list[12].main.temp + '\u00B0F');
         $('#day2wind').text(data.list[12].wind.speed + 'mph');
         $('#day2humid').text(data.list[12].main.humidity + '% Humidity');
         
-        $('#day3date').text(new Date(data.list[20].dt_txt));
+        $('#day3city').text(data.city.name)
+        var date3 = new Date(data.list[20].dt_txt)
+        $('#day3date').text(date3.toUTCString());
         $('#day3icon').attr('src', 'http://openweathermap.org/img/w/' + data.list[20].weather[0].icon + '.png').attr('alt', data.list[24].weather[0].description);
         $('#day3Desc').text(data.list[20].weather[0].description);
         $('#day3temp').text(data.list[20].main.temp + '\u00B0F');
       $('#day3wind').text(data.list[20].wind.speed + 'mph');
       $('#day3humid').text(data.list[20].main.humidity + '% Humidity');
       
-      $('#day4date').text(new Date(data.list[28].dt_txt));
+      $('#day4city').text(data.city.name)
+      var date4 = new Date(data.list[28].dt_txt)
+      $('#day4date').text(date4.toUTCString());
       $('#day4icon').attr('src', 'http://openweathermap.org/img/w/' + data.list[28].weather[0].icon + '.png').attr('alt', data.list[32].weather[0].description);
       $('#day4Desc').text(data.list[28].weather[0].description);
       $('#day4temp').text(data.list[28].main.temp + '\u00B0F');
       $('#day4wind').text(data.list[28].wind.speed + 'mph');
       $('#day4humid').text(data.list[28].main.humidity + '% Humidity');
       
-      $('#day5date').text(new Date(data.list[36].dt_txt));
+      $('#day5city').text(data.city.name)
+      var date5 = new Date(data.list[36].dt_txt)
+      $('#day5date').text(date5.toUTCString());
       $('#day5icon').attr('src', 'http://openweathermap.org/img/w/' + data.list[36].weather[0].icon + '.png').attr('alt', data.list[39].weather[0].description);
       $('#day5Desc').text(data.list[36].weather[0].description);
       $('#day5temp').text(data.list[36].main.temp + '\u00B0F');
